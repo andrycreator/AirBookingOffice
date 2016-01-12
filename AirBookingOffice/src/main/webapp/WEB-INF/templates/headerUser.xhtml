@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+	<ui:composition>
+		<h:panelGrid id="headerUser" styleClass="headerUserClass">
+			<h:panelGrid id="loginPanel" columns="3" columnClasses="loginColumn1, loginColumn2, loginColumn3"
+				 styleClass="loginPanelClass">
+				<h:outputText value="Welcome," />
+				<h:outputText value="#{loginBean.staff.first_name}" />
+				<p:commandLink value="Sing Out" action="#{loginBean.logOut()}" immediate="true" styleClass="linkSingOutClass"/>
+			</h:panelGrid>
+			<h:panelGrid id="loginRole" styleClass="loginPanelClass" columns="2" columnClasses="loginColumn1, 
+				loginColumn2">
+				<h:outputText value="Role: " />
+				<h:outputText value="#{loginBean.role.getLabel()}" />
+			</h:panelGrid>
+		</h:panelGrid>
+		<hr size="5" class="horizontalLineUserClass"/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+	</ui:composition>
+</body>
+</html>

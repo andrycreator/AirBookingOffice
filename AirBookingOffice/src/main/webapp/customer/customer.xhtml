@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Customer Page</title>
+	<h:outputStylesheet name="stylesSite.css" library="css" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/CustomerTemplate.xhtml">
+		<ui:define name="contentCustomer">
+			<h:form>
+				#{ticketBean.getAllPlaceArrival()}
+				<h:panelGrid id="panelFormatCustomer" styleClass="panelFormatCustomerClass">
+					<h:panelGrid id="label" columns="2" styleClass="labelData" columnClasses="labelDataColumn1, labelDataColumn2">
+						<h:outputText value="Place departure" styleClass="captionPlace"/>
+						<h:outputText value="Place arrival" styleClass="captionPlace"/>
+					</h:panelGrid>
+					
+					<h:panelGrid id="input" columns="2" styleClass="inputData" columnClasses="inputDataColumn1, inputDataColumn2">
+						<p:inputText value="Kyiv" readonly="true" styleClass="placeDepartCusotomer"/>
+						<p:selectOneMenu value="#{ticketBean.to}" required="true"	
+							requiredMessage="#{msg.placeArrivalNotEmpty}" styleClass="placeArrivalCustomer" style="width: 320px">
+							<f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
+							<f:selectItems value="#{ticketBean.collectTo}"/>
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<br/>
+					
+					<h:panelGrid id="labelDeparTicket" columns="2" columnClasses="labelDeparTicketColumn1,
+						labelDeparTicketColumn2" styleClass="labelDeparTicketClass">
+						<h:outputText value="Date departure" styleClass="captionPlace"/>
+						<h:outputText value="Tickets" styleClass="captionPlace"/>
+					</h:panelGrid>
+					
+					<h:panelGrid id="deparTicket" columns="4" columnClasses="deparTicketColumn1, deparTicketColumn2,
+						deparTicketColumn3, deparTicketColumn4" styleClass="deparTicketClass">
+						<p:calendar value="#{ticketBean.dateDepart}" pattern="dd-MM-yyyy" mask="true" required="true"
+					 		requiredMessage="#{msg.dateDapartureNotEmptyRequired}" size="6" styleClass="fieldDateCustomer"/>
+						<p:commandButton value="-" ajax="false" action="#{ticketBean.decrementCountTicket()}" styleClass="buttonDecrementClass"/>
+						<p:inputText value="#{ticketBean.countTicket}" required="true"
+							requiredMessage="#{msg.countTicketNotEmpty}"
+							validatorMessage="#{msg.countTicketLessRequired}"
+							converterMessage="#{msg.countTicketNotFormatRequired}" valueChangeListener="#{ticketBean.changeCountTicket}" 
+							immediate="true" styleClass="ticketToBuy">
+							<f:convertNumber/>
+							<f:validateLongRange minimum="1"/>
+						</p:inputText>
+						<p:commandButton value="+" ajax="false" action="#{ticketBean.incrementCountTicket()}" styleClass="buttonIncrementClass"/>	
+					</h:panelGrid>
+					
+					<p:messages styleClass="messages messagesCustomer" />
+					
+					<h:panelGrid id="buttonSearch" styleClass="buttonSearchClass">
+						<h:commandButton value="Search" action="#{ticketBean.getSelectFlight()}" styleClass="buttonSearchCustomer"/>
+					</h:panelGrid>
+					<br/>
+				</h:panelGrid>
+				<br/>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

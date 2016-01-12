@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+	<ui:composition>
+		#{ticketBean.calcTotal()}
+		<br/>
+		<h:panelGrid columns="4" columnClasses="cartPanelClassColumn1, cartPanelClassColumn2, cartPanelClassColumn3, 
+			cartPanelClassColumn4" styleClass ="cartPanelClass">
+			<h:graphicImage value="/resources/icons/flight1.png" height="90" width="130"/>
+			<h:outputText value="AirBookingOffice" styleClass="logoCustomerClass"/>
+			<p:commandLink action="cart?faces-redirect=true" immediate="true" styleClass="">
+				<h:graphicImage value="/resources/icons/#{ticketBean.iconCart()}" height="55" width="55" title="Cart" />
+			</p:commandLink>
+			
+			<h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:outputText value="Count tickets: "/>
+					<h:outputText value="#{ticketBean.listTickets.size()}"/>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="2">
+					<h:outputText value="Total: "/>
+					<h:outputText value="#{ticketBean.total}">
+						<f:convertNumber  pattern="#,##0.00 $"/>
+					</h:outputText>
+				</h:panelGrid>
+			</h:panelGrid>
+		</h:panelGrid>
+		<hr size="8"  class="horizontalLine" />
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+	</ui:composition>
+</body>
+</html>

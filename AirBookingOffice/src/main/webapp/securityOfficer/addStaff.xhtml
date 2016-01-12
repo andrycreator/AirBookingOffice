@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/UserTemplate.xhtml">
+		<ui:define name="contentUser">
+			<h2>#{staffBean.title}</h2>
+			<br/>
+			<h:form>
+				<h:panelGrid id="baseAddStaff" columns="2" columnClasses="baseAddStaffClassColumn1, 
+					baseAddStaffClassColumn2" styleClass="baseAddStaffClass">
+					<h:panelGrid id="commonPanel" columns="3" columnClasses="">
+						<h:outputText value="Login:" styleClass="labelTitleField"/>
+							<sup class="star">*</sup>
+							<p:inputText id="loginStaff" value="#{staffBean.staff.login}" required="true" 
+						requiredMessage="#{msg.securityLoginNotEmpty}" styleClass=""/>
+						<h:outputText value="Password:" rendered="#{staffBean.title eq 'Add new staff'}" 
+							styleClass="labelTitleField"/>
+						<h:panelGrid rendered="#{staffBean.title eq 'Add new staff'}">
+							<sup class="star" >*</sup>
+						</h:panelGrid>
+						<p:inputText id="idPassword" value="#{staffBean.staff.password}" required="true" 
+							requiredMessage="#{msg.securityPasswordNotEmpty}" rendered="#{staffBean.title eq 'Add new staff'}"
+							styleClass=""/>
+					
+						<h:outputText value="First name:" styleClass="labelTitleField"/>
+						<sup class="star">*</sup>
+						<p:inputText id="idFirstName" value="#{staffBean.staff.first_name}" required="true" 
+							requiredMessage="#{msg.securityFirstNameNotEmpty}" styleClass=""/>
+							
+						<h:outputText value="Second name:" styleClass="labelTitleField"/>
+						<sup class="star">*</sup>
+						<p:inputText value="#{staffBean.staff.second_name}" required="true"
+							requiredMessage="#{msg.securitySecondNameNotEmpty}" styleClass="">
+						</p:inputText>
+						
+						<h:outputText value="Middle name:" styleClass="labelTitleField"/>
+						<sup class="star">*</sup>
+						<p:inputText value="#{staffBean.staff.middle_name}" required="true"
+							requiredMessage="#{msg.securityMiddleNameNotEmpty}" styleClass="">
+						</p:inputText>
+						
+						<h:outputText value="Role:" styleClass="labelTitleField"/>
+						<sup class="star">*</sup>
+						<p:selectOneMenu value="#{staffBean.staff.role}"  required="true" 
+							requiredMessage="#{msg.securityRoleNotEmpty}" style="width: 193px">
+							<f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
+							<f:selectItems value="#{converterEnum.getRole()}" var="instant" itemLabel="#{instant.getLabel()}"/>
+						</p:selectOneMenu>
+						
+						<h:outputText value="Status:" rendered="#{staffBean.title eq 'Add new staff'}" styleClass="labelTitleField"/>
+						<h:panelGrid rendered="#{staffBean.title eq 'Add new staff'}">
+							<sup class="star" >*</sup>
+						</h:panelGrid>					
+						<p:selectOneMenu value="#{staffBean.staff.status}"  required="true"
+							requiredMessage="#{msg.securityStatusNotEmpty}" rendered="#{staffBean.title eq 'Add new staff'}"
+							style="width: 193px">
+							<f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
+							<f:selectItems value="#{converterEnum.getStatusStaff()}" var="instant" itemLabel="#{instant.getLabel()}"/>
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<p:messages styleClass="messages messagesCustomer" />
+				</h:panelGrid>
+				<br/>
+				<h:panelGrid id="panelButtonSC" columns="2" columnClasses="panelButtonSCClassColumn1" styleClass="panelButtonSCClass">
+					<p:commandButton value="Save" ajax="false" action="#{staffBean.saveStaff()}" styleClass="button"/>
+					<p:commandButton value="Cancel" ajax="false" action="#{staffBean.cancel()}" immediate="true" 
+						styleClass="button"/>
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

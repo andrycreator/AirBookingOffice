@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Login Page</title>
+	<h:outputStylesheet name="stylesSite.css" library="css"/>
+</h:head>
+<h:body styleClass="bodyLogin">
+	
+	<h:form>
+		<h:panelGrid id="loginGeneral" styleClass="loginGeneralCalss">
+			<h3 style="margin-left: 100px;">Please log in using your user</h3>
+			<hr width="230px" style="margin-left: 100px"/>
+			<h:panelGrid id="loginFields" columns="3" columnClasses="loginFieldsClassColumn1, loginFieldsClassColumn2" 
+				styleClass="loginFieldsClass">
+				<h:outputText value="Username" />
+				<sup class="star">*</sup>
+				<p:inputText value="#{loginBean.login}" styleClass="fieldText"/>
+				<h:outputText value="Password" />
+				<sup class="star">*</sup>
+				<p:password id="nonFeedback" value="#{loginBean.password}" styleClass="fieldText"/>
+			</h:panelGrid>
+			
+			<h:panelGrid id="loginButton" styleClass="loginButtonClass">
+				<h:outputText value="#{loginBean.msgWrong}" styleClass="messages" style="font-size: 15px"/>
+				<p:commandButton value="Login" ajax="false" action="#{loginBean.logIn()}" styleClass="button" 
+					style="margin-left: 65px"/>
+			</h:panelGrid>
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

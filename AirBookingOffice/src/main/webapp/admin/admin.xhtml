@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Admin Page</title>
+	<h:outputStylesheet name="stylesSite.css" library="css" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/UserTemplate.xhtml">
+		<ui:define name="contentUser">
+			<h2>Timetable</h2>
+			<h:form>
+				#{flightBean.refreshList()}
+				<h:panelGrid id="button" columns="2" columnClasses="buttonColumn1, buttonColumn2">
+					<p:commandButton value="Add Flight" action="#{flightBean.titleAddFlight()}" immediate="true"
+						styleClass="button"/>
+					<p:commandButton value="Remove orders" ajax="false" actionListener="#{flightBean.removeNotPaidOrders()}" 
+						immediate="true" title="Removal orders that are not paid" styleClass="button"/>
+				</h:panelGrid>
+				<br/>
+				<h:panelGrid id="labelFilter" columns="4" columnClasses="labelFilterColumn1, labelFilterColumn2, 
+					labelFilterColumn3, labelFilterColumn4">
+					<h:outputText value="Date from" styleClass="labelStandart"/>
+					<sup class="star">*</sup> 
+					<h:outputText value="Date to" styleClass="labelStandart"/>
+					<sup class="star">*</sup>
+				</h:panelGrid>
+				
+				<h:panelGrid id="filter" columns="6" columnClasses="filterColumn1, filterColumn2, filterColumn3,
+					filterColumn4, filterColumn5, filterColumn6">
+					<p:calendar value="#{flightBean.from}" pattern="dd-MM-yyyy" mask="true" styleClass="fieldText"
+						required="true" requiredMessage="#{msg.dateFromNotEmptyRequired}" size="6"/>
+					<h:outputText value="-" styleClass="fieldText"/>
+					<p:calendar value="#{flightBean.to}" pattern="dd-MM-yyyy" mask="true" styleClass="fieldText"
+						required="true" requiredMessage="#{msg.dateToNotEmptyRequired}" size="6"/>
+					<p:commandButton value="Filter" ajax="false" action="#{flightBean.filterFlightByPeriod()}" styleClass="button"/>
+					<p:commandButton value="Reset" ajax="false" action="#{flightBean.resetFlight()}" immediate="true" styleClass="button"/>
+				</h:panelGrid>
+				
+				<p:messages styleClass="messages"/>
+				<br/>
+				
+				<p:dataTable id="flightTable" value="#{flightBean.listFlight}" var="flightFromList" styleClass="flightTable">
+		
+					<p:column headerText="Race" styleClass="flightTableColumn1">
+						#{flightFromList.number}
+					</p:column>
+		
+					<p:column headerText="Company" styleClass="flightTableColumn2">
+						#{flightFromList.company}
+					</p:column>
+					
+					<p:column headerText="From" styleClass="flightTableColumn3">
+						#{flightFromList.from_}
+					</p:column>
+		
+					<p:column headerText="To" styleClass="flightTableColumn4">
+						#{flightFromList.to_}
+					</p:column>
+		
+					<p:column headerText="Time Departure" styleClass="flightTableColumn5"> 
+						<h:outputText value="#{flightFromList.date_departure}">
+							<f:convertDateTime pattern="HH:mm" timeZone="EET" />
+						</h:outputText>
+					</p:column>
+		
+					<p:column headerText="Date Departure" styleClass="flightTableColumn6">
+						<h:outputText value="#{flightFromList.date_departure}">
+							<f:convertDateTime pattern="dd.MM.yyyy" timeZone="EET" />
+						</h:outputText>
+					</p:column>
+		
+					<p:column headerText="Time Arrival" styleClass="flightTableColumn7">
+						<h:outputText value="#{flightFromList.date_arrival}">
+							<f:convertDateTime pattern="HH:mm" timeZone="EET" />
+						</h:outputText>
+					</p:column>
+		
+					<p:column headerText="Date Arrival" styleClass="flightTableColumn8">
+						<h:outputText value="#{flightFromList.date_arrival}">
+							<f:convertDateTime pattern="dd.MM.yyyy" timeZone="EET" />
+						</h:outputText>
+					</p:column>
+		
+					<p:column headerText="Avail." styleClass="flightTableColumn9">
+						#{flightFromList.free_ticket}
+					</p:column>
+		
+					<p:column headerText="Booked" styleClass="flightTableColumn10">
+						#{flightFromList.booked_ticket}
+					</p:column>
+		
+					<p:column headerText="Sold" styleClass="flightTableColumn11">
+						#{flightFromList.sold_ticket}
+					</p:column>
+		
+					<p:column headerText="Price" styleClass="flightTableColumn12">
+						<h:outputText value="#{flightFromList.price}">
+							<f:convertNumber pattern="#000.00$" />
+						</h:outputText>
+					</p:column>
+		
+					<p:column styleClass="flightTableColumn13">
+						<h:commandLink action="#{flightBean.editFlight(flightFromList.id)}" immediate="true">
+							<h:graphicImage value="/resources/icons/edit.png" title="Edit" />
+						</h:commandLink>
+					</p:column>
+		
+					<p:column styleClass="flightTableColumn14">
+						<h:commandLink actionListener="#{flightBean.deleteFlight(flightFromList.id)}" immediate="true">
+							<h:graphicImage value="/resources/icons/delete.png" title="Delete"/>
+						</h:commandLink>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

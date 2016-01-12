@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Admin Page</title>
+	<h:outputStylesheet name="stylesSite.css" library="css"
+		target="head" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/UserTemplate.xhtml">
+		<ui:define name="contentUser">
+			<h2>#{flightBean.operationFlight}</h2>
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:panelGrid columns="1">
+						<h:panelGrid id="commonPanel" columns="3" columnClasses="commonPanelColumn1">
+							<h:outputText value="Flight number" styleClass="labelTitleField"/>
+							<sup class="star">*</sup>
+							<p:inputText value="#{flightBean.flight.number}" required="true"
+								requiredMessage="#{msg.numberNotEmptyRequired}" styleClass="fieldText">
+							</p:inputText>
+		
+							<h:outputText value="Company" styleClass="labelTitleField"/>
+							<sup class="star">*</sup>
+							<p:inputText value="#{flightBean.flight.company}" required="true"
+								requiredMessage="#{msg.companyNotEmptyRequired}" styleClass="fieldText">
+							</p:inputText>
+		
+							<h:outputText value="From" styleClass="labelTitleField"/>
+							<h:outputText value="" />
+							<p:inputText value="Kyiv" readonly="true" styleClass="fieldText"/>
+		
+							<h:outputText value="To" styleClass="labelTitleField"/>
+							<sup class="star">*</sup>
+							<p:inputText value="#{flightBean.flight.to_}" required="true"
+								requiredMessage="#{msg.toNotEmptyRequired}" styleClass="fieldText">
+							</p:inputText>
+						</h:panelGrid>
+		
+						<!-- Дата і час відправки -->
+						<h:panelGrid id="dateDepart" columns="6" columnClasses="commonPanelColumn1, commonPanelColumn2, commonPanelColumn3, 
+							dateDepartColumn1">
+							<h:outputText value="Date departure" styleClass="labelTitleField"/>
+							<sup class="star">*</sup>
+							<p:calendar value="#{flightBean.dDeparture}" pattern="dd-MM-yyyy" mask="true" styleClass="fieldText"
+								required="true" requiredMessage="#{msg.dateDapartureNotEmptyRequired}" size="6"/>
+		
+							<h:outputText value="Time departure" styleClass="labelTitleField"/>
+							<sup class="star">*</sup>
+							<p:calendar value="#{flightBean.tDeparture}" pattern="HH:mm" mask="true" timeOnly="true" 
+								required="true" requiredMessage="#{msg.timeDapartureNotEmptyRequired}" size="1" styleClass="fieldText"/>
+						</h:panelGrid>
+		
+						<!-- Дата і час прибуття -->
+						<h:panelGrid columns="6" columnClasses="commonPanelColumn1, commonPanelColumn2, commonPanelColumn3, 
+							dateDepartColumn1">
+							<h:outputText value="Date arrival" styleClass="labelTitleField"/>
+							<sup class="star">*</sup>
+							<p:calendar value="#{flightBean.dArrival}" pattern="dd-MM-yyyy" mask="true" 
+								required="true" requiredMessage="#{msg.dateArrivalNotEmptyRequired}" size="6" styleClass="fieldText"/>
+		
+							<h:outputText value="Time arrival" styleClass="labelTitleField"/>
+							<sup class="star">*</sup>
+							<p:calendar value="#{flightBean.tArrival}" pattern="HH:mm" mask="true" timeOnly="true" 
+								required="true" requiredMessage="#{msg.timeArrivalNotEmptyRequired}" size="1" styleClass="fieldText"/>
+						</h:panelGrid>
+		
+						<h:panelGrid columns="3" columnClasses="commonPanelColumn1">
+							<h:outputText value="Count tickets" styleClass="labelTitleField"/>
+							<h:outputText value="" />
+							<p:inputText value="#{flightBean.flight.free_ticket}" required="true"
+								requiredMessage="#{msg.ticketsNotEmptyRequired}"
+								converterMessage="#{msg.ticketsNotFormatRequired}"
+								validatorMessage="#{msg.ticketsLessRequired}" styleClass="fieldText">
+								<f:validateLongRange minimum="0"/>
+								<f:convertNumber />
+							</p:inputText>
+							
+							<h:outputText value="Ticket price" styleClass="labelTitleField"/>
+							<sup class="star">*</sup>
+							<p:inputText value="#{flightBean.flight.price}" required="true"
+								requiredMessage="#{msg.priceNotEmptyRequired}"
+								converterMessage="#{msg.priceNotFormatRequired}"
+								validatorMessage="#{msg.priceLessMinRequired}" styleClass="fieldText">
+								<f:convertNumber minFractionDigits="2" />
+								<f:validateDoubleRange minimum="0.01"/>
+							</p:inputText>	
+						</h:panelGrid>
+					</h:panelGrid>
+					
+					<p:messages styleClass="messages" />
+				</h:panelGrid>
+				<br/>
+				<h:panelGrid id="buttonSCFlight" columns="2" columnClasses="buttonSCFlightClassColumn1" styleClass="buttonSCFlightClass">
+					<p:commandButton value="Save" ajax="false" action="#{flightBean.saveFlight()}" styleClass="button"/>
+					<p:commandButton value="Cancel" action="#{flightBean.cancel}" immediate="true" styleClass="button"/>
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>	
+</h:body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<body>
+	<ui:composition>
+		<h:panelGrid columns="3" columnClasses="contInformClassColumn1, contInformClassColumn2, contInformClassColumn3" 
+			styleClass="contInformClass">
+			<h:panelGrid columns="2" styleClass="">
+				<h:graphicImage value="/resources/icons/phone.png" height="20" width="20"/>
+				<h:outputText value="+38 044 585-77-77"/>
+				<h:graphicImage value="/resources/icons/fax.png" height="30" width="30"/>
+				<h:outputText value="+38 044 392-29-38"/>
+				<h:graphicImage value="/resources/icons/mailicon.png" height="25" width="25"/>
+				<h:outputText value="airbookingoffice@kyiv.com.ua"/>
+			</h:panelGrid>
+			
+			<h:panelGrid columns="1">
+				<h:outputText value="Перед бронюванням авіаквитків, будь-ласка ознайомтесь з правилами і умовами бронювання авіаквитків на даному сайті"/>
+			</h:panelGrid>
+			
+			<h:panelGrid columns="2">
+				<h:graphicImage value="/resources/icons/visa.png" height="40" width="70"/>
+				<h:graphicImage value="/resources/icons/master.png" height="40" width="70"/>
+			</h:panelGrid>
+			<div>
+				<h:outputText value="&reg; Andrii Gaidychuk 2015" style="font-size: 11px; font-family: Verdana;"/>
+			</div>
+		</h:panelGrid>
+	</ui:composition>
+</body>
+</html>

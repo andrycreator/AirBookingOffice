@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Customer</title>
+	<h:outputStylesheet name="stylesSite.css" library="css" />
+</h:head>
+<h:body styleClass="bodyCustomer">
+	<ui:insert name="headerCustomer">
+		<ui:include src="headerCustomer.xhtml"/>
+	</ui:insert>
+	
+	<ui:insert name="contentCustomer">
+		<ui:include src="contentCustomer.xhtml"/>
+	</ui:insert>
+		
+	<ui:insert name="footerCustomer">
+		<ui:include src="footerCustomer.xhtml"/>
+	</ui:insert>
+</h:body>
+</html>

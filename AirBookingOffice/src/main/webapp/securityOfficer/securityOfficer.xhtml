@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/UserTemplate.xhtml">
+		<ui:define name="contentUser">
+			<h:form>
+				#{staffBean.fillListStaff()}
+				<h2>Staff List</h2>
+				<p:commandButton value="Add staff" action="#{staffBean.addStaff()}"  styleClass="button buttonAddStaff"/>
+				<br/> <br/>
+				<p:dataTable value="#{staffBean.listStaff}" var="staffFromList" styleClass="tableStaffClass">
+					<p:column headerText="№" styleClass="tableStaffClassColumn1">
+						#{staffFromList.id}
+					</p:column>
+		
+					<p:column headerText="Role" styleClass="tableStaffClassColumn2">
+						#{staffFromList.role.getLabel()}
+					</p:column>
+					
+					<p:column headerText="Status" styleClass="tableStaffClassColumn3">
+						#{staffFromList.status.getLabel()}
+					</p:column>
+					
+					<p:column headerText="Second name" styleClass="tableStaffClassColumn5">
+						#{staffFromList.second_name}
+					</p:column>
+					
+					<p:column headerText="First name" styleClass="tableStaffClassColumn4">
+						#{staffFromList.first_name}
+					</p:column>
+					
+					<p:column headerText="Middle name" styleClass="tableStaffClassColumn6">
+						#{staffFromList.middle_name}
+					</p:column>
+					
+					<p:column headerText="Login" styleClass="tableStaffClassColumn7">
+						#{staffFromList.login}
+					</p:column>
+					
+					<p:column styleClass="tableStaffClassColumn8">
+						<h:commandLink action="#{staffBean.changeStatus(staffFromList.id)}">	
+							<h:graphicImage value="/resources/icons/change16.ico" title="Change status"/>
+						</h:commandLink>
+					</p:column>
+					
+					<p:column styleClass="tableStaffClassColumn9">
+						<h:commandLink action="#{staffBean.editStaff(staffFromList.id)}">
+							<h:graphicImage value="/resources/icons/edit.png" title="Edit"/>
+						</h:commandLink>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

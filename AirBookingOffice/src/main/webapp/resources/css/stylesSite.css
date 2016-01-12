@@ -1,0 +1,911 @@
+@CHARSET "UTF-8";
+
+/*============================= Common =====================================*/
+
+	/* Колір зірочок */
+.star {
+	color: red
+}
+
+	/* Поле дати */
+.textInputDate {
+	width: 50px;
+}
+
+	/* Повідомлення */
+.messages {
+	color: red;
+	font-size: 14px;
+}
+
+	/* Кнопки */
+.button {
+	font-size: 15px;
+	border-radius: 10px;
+}
+
+	/* Кнопки у Customer*/
+.buttonCustomerClass {
+	border-radius: 10px;
+}
+
+	/* Стандартні підписи полів */
+.labelStandart {
+	font-size: 17px;
+}
+
+	/* Поля з тестом і датою */
+.fieldText {
+	font-size: 16px;
+}
+
+/*========================= header Customer ================================*/
+
+	/* Логотип */
+.logoCustomerClass {
+	font-size: 45px;
+	font-style: italic;
+	font-family: Colonna MT;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+	/* Розташування корзини */
+.cartPanelClass {
+	position: absolute; 
+	top: 0px; 
+	left: 0px;
+	height: 100px;
+	background: #66cc00;
+}
+.cartPanelClassColumn1 {
+	width: 150px;
+}	
+.cartPanelClassColumn2 {
+	width: 840px;
+}
+.cartPanelClassColumn3 {
+	width: 70px;
+}
+.cartPanelClassColumn4 {
+	width: 170px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+	/* Горизонтальна лінія */
+.horizontalLine {
+	background: #800080;
+	width: 102%;
+	margin-left: -9px;
+	position: absolute;
+	top: 90px;
+}
+
+/*========================= footer Customer ================================*/
+
+	/* Розташування контактної інформації */
+.contInformClass {
+	color: #ffffff;
+	background: #550055;
+	width: 100%;
+	height: 125px;
+	position: absolute; 
+	bottom: 0px; 
+	left: 0px;
+	
+}
+.contInformClassColumn1 {
+	padding-left: 100px;
+	width: 150px;
+	
+}	
+.contInformClassColumn2 {
+	width: 400px;
+	text-align: left;
+}
+.contInformClassColumn3 {
+	width: 150px;
+	
+}
+
+/*========================== Customer Template =============================*/
+
+	/* Фон */
+.bodyCustomer {
+	background-color: #f9f9ff;
+}
+
+/*============================ header User =================================*/
+
+	/* h:panelGrid id="headerUser" */
+.headerUserClass {
+	position: absolute; 
+	top: 0px; 
+	left: 0px;
+	height: 85px;
+	width: 102%;
+	background: #dfdfff; 
+	background: -webkit-linear-gradient(left, #0404ff, #dfdfff);
+}
+
+		/* h:panelGrid id="loginPanel */
+.loginPanelClass {
+	text-align: right; 
+	margin-left: 950px;
+	font-family: Verdana;
+	font-size: 14px;
+	font-weight: bold;
+}
+.loginColumn1 {
+	width: 70px;
+	text-align: left;
+}
+.loginColumn2 {
+	width: 100px;
+	text-align: left;
+}
+.loginColumn3 {
+	width: 70px;
+	text-align: right;
+}
+
+	/* CommandLink "Sign Out" */
+.linkSingOutClass {
+	font-style: italic;
+	font-size: 13px;
+	font-family: Verdana;
+}
+
+	/* Горизонтальна лінія */
+.horizontalLineUserClass {
+	background: #800080;
+	width: 102%;
+	margin-left: -9px;
+	position: absolute;
+	top: 75px;
+}
+
+/*============================ footer User =================================*/
+
+/*============================= User Template ==============================*/
+
+/*============================= login ======================================*/
+
+	/* Фон сторінки */
+.bodyLogin {
+	background-image: url(../resources/images/Airplane_travel.jpg);
+	background-size: 1250px 650px
+}
+
+	/* h:panelGrid id="loginGeneral" */
+.loginGeneralCalss {
+	margin-top: 170px;
+	margin-left: 420px;
+	background-color: white;
+	border-style: solid;
+	width: 390px;
+	height: 200px;
+}
+
+	/* h:panelGrid id="loginFields" */
+.loginFieldsClass {
+	margin-left: 30px;
+}
+.loginFieldsClassColumn1 {
+	text-align: right;
+	font-size: 17px;
+	font-style: Verdana;
+}
+.loginFieldsClassColumn2 {
+	text-align: left;
+}
+
+	/* h:panelGrid id="loginButton" */
+.loginButtonClass {
+	margin-left: 115px;
+}
+
+/*============================= admin ======================================*/
+
+	/* h:panelGrid id="button" */
+.buttonColumn1 {
+	width: 110px;
+}
+.buttonColumn2 {
+	width: 150px;
+}
+
+	/* h:panelGrid id="labelFilter" */
+.labelFilterColumn1 {
+	width: auto;
+}
+.labelFilterColumn2 {
+	width: 55px;	
+}
+.labelFilterColumn3 {
+	width: auto;
+}
+.labelFilterColumn4 {
+	
+}
+.labelFilterColumn5 {
+	
+}
+.labelFilterColumn6 {
+	
+}
+.labelFilterColumn7 {
+	
+}
+
+	/* h:panelGrid id="filter" */
+.filterColumn1 {
+	width: 20px;
+	text-align: left;
+}
+.filterColumn2 {
+	width: 20px;
+	text-align: center;
+}
+.filterColumn3 {
+	width: 20px;
+}
+.filterColumn4 {
+	width: 70px;
+	text-align: center;
+}
+.filterColumn5 {
+	width: 70px;
+	text-align: center;
+}
+.filterColumn6 {
+	width: 860px;
+	text-align: right;
+}
+
+	/* h:dataTable id="flightTable" */
+.flightTable {
+	border-collapse: collapse;
+	border: #000000 solid 1px;
+	font-size: 15px;
+}
+.flightTableHeader {
+	text-align: center;
+	background: none 0 0 repeat scroll #808080;
+	border-bottom: 3px solid #000000;
+}
+.flightTableOddRow {
+	text-align: left;
+}
+.flightTableEvenRow {
+	text-align: left;
+}
+.flightTableColumn1 {
+	width: 60px;
+}
+.flightTableColumn2 {
+	width: 150px
+}
+.flightTableColumn3 {
+	width: 60px;
+	text-align: center;
+}
+.flightTableColumn4 {
+	width: 120px
+}
+.flightTableColumn5 {
+	width: 65px;
+	text-align: center;
+}
+.flightTableColumn6 {
+	width: 70px;
+	text-align: center;
+}
+.flightTableColumn7 {
+	width: 42px;
+	text-align: center;
+}
+.flightTableColumn8 {
+	width: 70px;
+	text-align: center;
+}
+.flightTableColumn9 {
+	width: 35px;
+	text-align: center;
+}
+.flightTableColumn10 {
+	width: 50px;
+	text-align: center;
+}
+.flightTableColumn11 {
+	width: 35px;
+	text-align: center;
+}
+.flightTableColumn12 {
+	width: 50px;
+	text-align: center;
+}
+.flightTableColumn13 {
+	width: 15px;
+	text-align: center;
+}
+.flightTableColumn14 {
+	width: 15px;
+	text-align: center;
+}
+	
+/*============================== addFlight =================================*/
+
+	/* Форматування h:panelGrid id="commonPanel" */
+.commonPanelColumn1 {
+	text-align: right;
+	font-size: 17px;
+	font-style: Verdana;
+	width: 330px;
+	
+}
+.commonPanelColumn2 {
+	
+}
+.commonPanelColumn3 {
+	width: 70px
+}
+
+	/* h:panelGrid id="dateDepart" */
+.dateDepartColumn1 {
+	text-align: right;
+	font-size: 17px;
+	font-style: Verdana;
+}
+
+	/* h:panelGrid id="buttonSCFlight" */
+.buttonSCFlightClass {
+	margin-left: 350px;
+}
+.buttonSCFlightClassColumn1 {
+	width: 90px;
+}
+
+/*============================= customer ===================================*/
+
+	/* Повідомлення */
+.messagesCustomer {
+	padding-left: 3%
+}
+
+	/* Підписи до полів */
+.captionPlace {
+	height: 24px;
+	font-size: 22px;
+	font-style: Verdana;
+}
+
+	/* Назви місця відправки */
+.placeDepartCusotomer {
+	height: 29px;
+	width: 350px;
+	font-size: 25px;
+	font-style: Verdana;
+}
+
+	/* Назви місця призначення */
+.placeArrivalCustomer {
+	height: 35px;
+	width: 380px;
+	font-size: 25px;
+	font-style: Verdana;
+}
+
+	/* Поле дати */
+.fieldDateCustomer {
+	height: 29px;
+	width: 140px;
+	font-size: 25px;
+	font-align: center;
+	font-style: Verdana;
+}
+
+	/* Поле кількості квитків для купівлі */
+.ticketToBuy {
+	width: 40px;
+	font-size: 27px;
+	text-align: center;
+}
+
+	/* Кнопка */
+.buttonSearchCustomer {
+	width: 100px;
+	height: 50px;
+	font-size: 22px;
+	border-radius: 10px;
+}
+
+	/* h:panelGrid id="label" */
+.panelFormatCustomerClass {
+	background: #c0c0c0;
+	margin-left: 210px;
+	background: -webkit-linear-gradient(top, #c0c0c0, #ffffff);
+	width: 65%;
+	border-radius: 20px;
+	
+}
+
+	/* h:panelGrid id="label" */
+.labelData {
+	width: 71%;
+	margin-left: 4%;
+}
+.labelDataColumn1 {
+	width: 30%;
+}
+.labelDataColumn2 {
+	width: 16%;
+}
+
+	/* h:panelGrid id="input" */
+.inputData {
+	width: 70%;
+	margin-left: 3%;
+}
+.inputDataColumn1 {
+	width: 21%;
+}
+.inputDataColumn2 {
+	width: 45%;
+}
+
+	/* h:panelGrid id="labelDeparTicket" */
+.labelDeparTicketClass {
+	margin-left: 4%;
+	border-collapse: collapse;
+}
+.labelDeparTicketColumn1 {
+	width: 260px;
+	border-right: 1px;
+	border-style: none;
+}
+.labelDeparTicketColumn2 {
+	width: 60px;
+}
+
+	/* h:panelGrid id="deparTicket" */
+.deparTicketClass {
+	margin-left: 3%;
+}
+.deparTicketColumn1 {
+	width: 220px;
+}
+.deparTicketColumn2 {
+	width: 40px;
+	text-align: right;
+}
+.deparTicketColumn3 {
+	width: 35px;
+}
+.deparTicketColumn4 {
+	width: 40px;
+}
+	/* Кнопка + */
+.buttonIncrementClass {
+	font-size: 20px;
+	text-align: center;
+	width: 50px;
+	border-top-right-radius:15px;
+	border-bottom-right-radius:15px;
+}
+	/* Кнопка - */
+.buttonDecrementClass {
+	font-size: 20px;
+	text-align: center;
+	width: 48px;
+	border-top-left-radius:15px;
+	border-bottom-left-radius:15px;
+}
+
+	/* h:panelGrid id="buttonSearch" */
+.buttonSearchClass {
+	margin-left: 84%;
+}
+
+/*============================= findFlight =================================*/
+
+	/* h:panelGrid id="selectData" */
+.selectData {
+	margin-left: 190px;
+	font-size: 24px;
+}	
+.selectDateColumn1 {
+	text-align: center;
+	color: #0000bf;
+}
+.selectDateColumn2 {
+	width: 40px;
+	text-align: center;
+	color: #0000bf;
+}
+.selectDateColumn3 {
+	text-align: center;
+	color: #0000bf;
+}
+.selectDateColumn4 {
+	width: 110px;
+	text-align: center;
+}
+.selectDateColumn5 {
+	padding-left: 10px;
+}
+
+	/* h:dataTable id="selFlight" */
+.selFindFlight {
+	margin-left: 160px;
+	margin-right: 160px;
+	border: #000000 solid 1px;
+	font-size: 18px;
+}	
+.selFindFlightColumn1 {
+	 width: 90px;
+	 padding-left: 30px;
+	 
+}
+.selFindFlightColumn2 {
+	 width: 170px;
+	 padding-left: 30px;
+	 
+}
+.selFindFlightColumn3 {
+	 width: 80px;
+	 text-align: center;
+}
+.selFindFlightColumn4 {
+	 width: 120px;
+	 text-align: center;
+}
+.selFindFlightColumn5 {
+	 width: 70px;
+	 text-align: center;
+}
+.selFindFlightColumn6 {
+	 width: 70px;
+	 text-align: center;
+}
+.selFindFlightColumn7 {
+	 width: 20px;
+	 text-align: center;
+}
+
+	/* h:panelGrid id="continueButton" */
+.continueButtonClass {
+	margin-left: 825px;
+}
+
+/*============================ inputCustomer ================================*/
+
+	/* h:dataTable id="dataCustomer" */
+.dataCustomerClass {
+	margin-left: 160px;
+	margin-right: 160px;
+	font-size: 17px;
+}
+.dataCustomerClassColumn1 {
+	text-align: right;
+	width: 20px;
+	padding-right: 3px;
+	font-size: 19px;
+}
+	/* Поле дати */
+.fieldDateCustomer {
+	width: 40px;
+	font-align: center;
+}
+.buttomCustomer {
+	margin-left: 910px;
+}
+/*=============================== cart =====================================*/
+
+	/* Повідомлення про порожню корзину */
+.msgEmptyCart {
+	font-size: 28px; 
+	margin-left: 450px;
+	height: 100px;
+}
+
+	/* h:dataTable h:dataTable id="dataCart" */
+.dataCartClass {
+	margin-left: 160px;
+	margin-right: 160px;
+	font-size: 17px;
+	font-family: Verdana;
+	text-align: center;
+	/* border-bottom-color: black;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	padding-bottom: 10px; */
+}
+.dataCartClassColumn1 {
+	width: 20px;
+}
+.dataCartClassColumn2 {
+	width: 80px;
+}
+.dataCartClassColumn3 {
+	width: 180px;
+}
+.dataCartClassColumn4 {
+	width: 190px;
+}
+.dataCartClassColumn5 {
+	width: 220px;
+}
+.dataCartClassColumn6 {
+	width: 100px;
+}
+.dataCartHeader {
+	border-bottom: 2px solid black;
+	padding-bottom: 10px;
+}
+	
+	/* Підсумок */
+.fieldTotal {
+	margin-left: 815px;
+	font-size: 19px;
+	font-weight: bold;
+	font-family: Verdana;
+}
+
+	/* h:panelGrid id="buttonCart" */
+.buttonCartClass {
+	margin-left: 655px;
+	font-size: 14px;
+}
+.buttonCartClassColumn1 {
+	width: 220px;
+}
+.buttonCartClassColumn2 {
+	width: 150px;
+}
+
+	/* Лінія в корзині */
+.lineTotalCalss {
+	background: black; 
+	width: 815px;
+	margin-left: 160px;
+}
+
+/*============================== analytic ==================================*/
+
+	/* h:panelGrid id="labelDate" */
+.labelDateClass {
+	margin-left: 155px;
+	font-family: Verdana;
+	font-size: 13px;
+}
+.labelDateClassColumn1 {
+	
+}
+.labelDateClassColumn2 {
+	width: 40px;
+}
+.labelDateClassColumn3 {
+	
+}
+.labelDateClassColumn4 {
+	
+}
+
+	/* h:panelGrid id="compAnalytic" */
+.compAnalyticClass {
+	margin-left: 40px;
+	margin-right: 40px;
+	font-family: Verdana;
+	font-size: 15px;
+}
+.compAnalyticClassColumn1 {
+	width: 110px;
+}
+.compAnalyticClassColumn2 {
+	
+}
+.compAnalyticClassColumn3 {
+	
+}
+.compAnalyticClassColumn4 {
+	
+}
+.compAnalyticClassColumn5 {
+	padding-left: 20px;
+}
+.compAnalyticClassColumn6 {
+	
+}
+.compAnalyticClassColumn7 {
+	
+}
+.compAnalyticClassColumn8 {
+	padding-left: 20px;
+}
+.compAnalyticClassColumn9 {
+	
+}
+.compAnalyticClassColumn10 {
+	
+}
+.compAnalyticClassColumn11 {
+	padding-left: 20px;
+}
+
+	/* p:selectOneRadio id="labelReport" */
+.labelReportClass {
+	font-size: 13px; 
+	font-family: Verdana
+}
+
+	/* p:selectOneMenu id="selectGroup" */
+.selectGroupClass {
+	
+}
+
+	/* p:dataTable id="resultTable" */
+.resultTableClass {
+	border-collapse: collapse;
+	border: #000000 solid 2px;
+	font-size: 17px;
+	margin-left: 400px;
+	margin-right: 400px;
+}
+.resultTableClassColumn1 {
+	width: 60px;
+	text-align: center;
+}
+.resultTableClassColumn2 {
+	width: 30px;
+	text-align: center;
+}
+.resultTableClassColumn3 {
+	width: 50px;
+	text-align: center;
+}
+
+	/* h:panelGrid id="totalResult" */
+.totalResultClass {
+	margin-left: 510px;
+	font-size: 17px;
+	font-weight: bold;
+	font-family: Verdana;
+}
+.totalResultClassColumn1 {
+	width: 60px;
+}
+.totalResultClassColumn2 {
+	width: 78px;
+	padding-left: 37px;
+}
+.totalResultClassColumn3 {
+	width: 120px;
+	padding-left:3px;
+}
+
+	/* h:panelGrid id="panelPie" */
+.panelPieClass {
+	height: auto;
+}
+	
+	/* p:chart type="pie" */
+.pieClass {
+	height: 350px;
+}
+
+	/* p:chart type="line" */
+.lineClass {
+	height: 350px;
+}
+
+
+/*============================== accountant ================================*/
+
+	/* p:dataTable id="orderAcc" */
+.orderAccClass {
+	margin-left: 250px;
+	margin-right: 250px;
+	text-align: center;
+	font-size: 16px;
+}
+.orderAccClassColumn1 {
+	width: 40px;
+	
+}
+.orderAccClassColumn2 {
+	width: 70px;
+}
+.orderAccClassColumn3 {
+	width: 140px;
+}
+.orderAccClassColumn4 {
+	width: 60px;
+}
+.orderAccClassColumn5 {
+	width: 80px;
+}
+.orderAccClassColumn6 {
+	width: 40px;
+}
+
+/*============================== security ==================================*/
+
+	/* Кнопка Add */
+.buttonAddStaff {
+	margin-left: 100px;
+}
+
+	/* Таблиця працівників */
+.tableStaffClass {
+	margin-left: 100px;
+	margin-right: 100px;
+}
+.tableStaffClassColumn1 {
+	width: 30px;
+	text-align: center;
+}
+.tableStaffClassColumn2 {
+	width: 100px;
+}
+.tableStaffClassColumn3 {
+	width: 60px;
+}
+.tableStaffClassColumn4 {
+	width: 140px;
+}
+.tableStaffClassColumn5 {
+	width: 150px;
+}
+.tableStaffClassColumn6 {
+	width: 140px;
+}
+.tableStaffClassColumn7 {
+	width: 100px;
+}
+.tableStaffClassColumn8 {
+	width: 15px;
+}
+.tableStaffClassColumn9 {
+	width: 15px;
+}
+
+/*=============================== addStaff =================================*/
+
+	/* Повідомлення msgCheckBusy */
+.msgCheckBusy {
+	color: #ff0000;
+}
+
+	/* Повідомлення msgCheckFree */
+.msgCheckFree {
+	color: #008000;
+}
+
+	/* h:panelGrid id="baseAddStaff" */
+.baseAddStaffClass {
+	margin-left: 230px;
+	
+}
+.baseAddStaffClassColumn1 {
+	text-align: right;
+	
+}
+.baseAddStaffClassColumn2 {
+	width: 480px;
+}
+
+	/* Підписи полів */
+.labelTitleField {
+	font-family: Verdana;
+	font-size: 15px;
+}
+
+	/* h:panelGrid id="panelButtonSC" */
+.panelButtonSCClass {
+	margin-left: 380px;
+}
+.panelButtonSCClassColumn1 {
+	width: 90px;
+}

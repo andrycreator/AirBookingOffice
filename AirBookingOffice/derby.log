@@ -1,0 +1,18 @@
+----------------------------------------------------------------
+Wed Dec 23 19:46:42 EET 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0151-cff3-14c0-00000c81b028 
+on database directory C:\Users\admin\Documents\Java Projects\workspace\DBProject with class loader WebappClassLoader
+  context: spring-utility
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@76ed5528
+ 
+Loaded from file:/C:/Users/admin/Documents/Java%20Projects/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/AirBookingOffice/WEB-INF/lib/derby-10.10.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_31-b13
+user.dir=C:\Users\admin\Documents\Java Projects\workspace\AirBookingOffice
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

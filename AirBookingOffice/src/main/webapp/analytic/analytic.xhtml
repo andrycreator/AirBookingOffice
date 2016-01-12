@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/UserTemplate.xhtml">
+		<ui:define name="contentUser">
+			<h2>Reports</h2>
+			<h:form>
+				<h:panelGrid id="labelDate" columns="4" columnClasses="labelDateClassColumn1, labelDateClassColumn2,
+					labelDateClassColumn3, labelDateClassColumn4" styleClass="labelDateClass">
+					<h:outputText value="Date start" />
+					<sup class="star">*</sup>
+					<h:outputText value="Date end" />
+					<sup class="star">*</sup>
+				</h:panelGrid>
+				<h:panelGrid id="compAnalytic" columns="11" columnClasses="compAnalyticClassColumn1, compAnalyticClassColumn2, 
+					compAnalyticClassColumn3, compAnalyticClassColumn4, compAnalyticClassColumn5, compAnalyticClassColumn6, 
+					compAnalyticClassColumn7, compAnalyticClassColumn8, compAnalyticClassColumn9, compAnalyticClassColumn10, 
+					compAnalyticClassColumn11" styleClass="compAnalyticClass">
+					<h:outputText value="Select period: " />
+					<p:calendar value="#{reportBean.start}" required="true" pattern="dd-MM-yyyy" mask="true" size="6"
+						requiredMessage="#{msg.analyticDateStartNotEmpty}">
+					</p:calendar>
+					<h:outputText value="-" styleClass="fieldText"/>
+					<p:calendar value="#{reportBean.end}" required="true" pattern="dd-MM-yyyy" mask="true" size="6"
+						requiredMessage="#{msg.analyticDateEndNotEmpty}">
+					</p:calendar>
+					
+					<h:outputText value="Group by: " />
+					<sup class="star">*</sup>
+					<p:selectOneMenu id="selectGroup" value="#{reportBean.typeGroup}" styleClass="selectGroupClass" 
+						style="width: 140px">
+						<f:selectItem itemValue="date" itemLabel="Date"/>
+						<f:selectItem itemValue="destination" itemLabel="Destination place"/>
+					</p:selectOneMenu>
+					
+					<h:outputText value="Report display: "/>
+					<sup class="star">*</sup>
+					<p:selectOneRadio id="labelReport" value="#{reportBean.typeReport}" styleClass="labelReportClass">
+			            <f:selectItem itemLabel="Table" itemValue="table" />
+			            <f:selectItem itemLabel="Chart" itemValue="shedule" />
+			        </p:selectOneRadio>
+			        
+			        <p:commandButton value="Make report" ajax="false" action="#{reportBean.showReport()}" styleClass="button"/>
+				</h:panelGrid>				
+				<p:messages styleClass="messages"/>
+			</h:form>
+			<br/>
+			
+			<h:form rendered="#{reportBean.typeReport eq 'table'}">
+				<p:dataTable id="resultTable" value="#{reportBean.listResult}" var="result" styleClass="resultTableClass">
+					<p:column headerText="Date" styleClass="resultTableClassColumn1" rendered="#{reportBean.typeGroup eq 'date'}">
+						<h:outputText value="#{reportBean.asDate(result.ld)}">
+							<f:convertDateTime pattern="dd.MM.yyyy"/>
+						</h:outputText>
+					</p:column>
+					
+					<p:column headerText="Destionation place" styleClass="resultTableClassColumn1"  rendered="#{reportBean.typeGroup eq 'destination'}">
+						#{result.destinPlace}
+					</p:column>
+		
+					<p:column headerText="Number" styleClass="resultTableClassColumn2">
+						#{result.count}
+					</p:column>
+					
+					<p:column headerText="Amount, USD" styleClass="resultTableClassColumn3">
+						<h:outputText value="#{result.amount}">
+							<f:convertNumber pattern="#,##0.00 $"/>
+						</h:outputText>
+					</p:column>
+					
+				</p:dataTable>
+				<h:panelGrid id="totalResult" columns="3" columnClasses="totalResultClassColumn1, totalResultClassColumn2, 
+					totalResultClassColumn3" styleClass="totalResultClass">
+					<h:outputText value="Total: "/>
+					<h:outputText value="#{reportBean.totalNumber}"/>
+					<h:outputText value="#{reportBean.totalAmount}">
+						<f:convertNumber pattern="#,##0.00 $"/>
+					</h:outputText>
+				</h:panelGrid>
+			</h:form>
+			
+			
+			<h:form rendered="#{reportBean.typeReport eq 'shedule' and reportBean.typeGroup eq 'date'}">
+				<h:panelGrid id="panelLine" columns="2" columnClasses="">
+				    <p:chart type="line" model="#{sheduleView.modelLineAmount}" style="width:600px;" styleClass="lineClass"/>
+				    <p:chart type="line" model="#{sheduleView.modelLineNumber}" style="width:600px;" styleClass="lineClass"/>
+				</h:panelGrid>
+			</h:form>
+			
+			<h:form rendered="#{reportBean.typeReport eq 'shedule' and reportBean.typeGroup eq 'destination'}">
+				<h:panelGrid id="panelPie" columns="2" styleClass="panelPieClass">
+				    <p:chart type="pie" model="#{sheduleView.modelPieAmount}" style="width:600px;" styleClass="pieClass"/>
+				    <p:chart type="pie" model="#{sheduleView.modelPieNumber}" style="width:600px;" styleClass="pieClass"/>
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

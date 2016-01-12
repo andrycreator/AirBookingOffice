@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cart</title>
+	<h:outputStylesheet name="stylesSite.css" library="css" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/CustomerTemplate.xhtml">
+		<ui:define name="contentCustomer">
+			<h:form rendered="#{ticketBean.listTickets.size()==0}" styleClass="msgEmptyCart">
+				<h:outputText value="Your cart is empty"/>
+			</h:form>
+			<h:form rendered="#{ticketBean.listTickets.size()!=0}">
+				<h:dataTable id="dataCart" value="#{ticketBean.listTickets}" var="ticket" styleClass="dataCartClass"
+					columnClasses="dataCartClassColumn1, dataCartClassColumn2, dataCartClassColumn3, dataCartClassColumn4,
+					dataCartClassColumn5, dataCartClassColumn6" headerClass="dataCartHeader" rowClasses="">
+					<h:column>
+						<h:commandLink action="#{ticketBean.deleteFromCart(ticketBean.listTickets.indexOf(ticket))}">
+							<h:graphicImage value="/resources/icons/remove24.ico" title="Delete"/>
+						</h:commandLink>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Flight</f:facet>
+							<h:outputText value="#{ticket.flight.number}" styleClass=""/>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Departure</f:facet>
+						<h:outputText value="#{ticket.flight.date_departure}" styleClass="">
+							<f:convertDateTime pattern="HH:MM dd.MM.yyyy"/>
+						</h:outputText>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Place Arrival</f:facet>
+						<h:outputText value="#{ticket.flight.to_}" styleClass=""/>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Customer</f:facet>
+						<h:outputText value="#{ticket.customer.first_name} #{ticket.customer.second_name}" styleClass=""/>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Price</f:facet>
+						<h:outputText value="#{ticket.price}" styleClass="">
+							<f:convertNumber pattern="#,##0.00 $"/>
+						</h:outputText>
+					</h:column>
+				</h:dataTable> 
+			</h:form>
+			
+			<h:form>
+				<hr size="3" class="lineTotalCalss"/>
+				<h:panelGrid columns="2" styleClass="fieldTotal">
+					<h:outputText value="Total: " styleClass=""/>
+					<h:outputText value="#{ticketBean.total}" styleClass="">
+						<f:convertNumber pattern="#,##0.00 $"/>
+					</h:outputText>
+				</h:panelGrid>
+				<br/>
+				<h:panelGrid id="buttonCart" columns="2" columnClasses="buttonCartClassColumn1, buttonCartClassColumn2"
+					styleClass="buttonCartClass">
+					<p:commandButton value="Continue flight search..." action="#{ticketBean.redirectCustomer()}" 
+						styleClass="buttonCustomerClass"/>
+					<p:commandButton value="Booking" ajax="false" action="#{ticketBean.makeBooking()}"
+						rendered="#{ticketBean.listTickets.size()!=0}" styleClass="buttonCustomerClass"/>
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Input Customer</title>
+	<h:outputStylesheet name="stylesSite.css" library="css" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/CustomerTemplate.xhtml">
+		<ui:define name="contentCustomer">
+			<h:form>
+		   		<h:panelGrid id="dataFlight" columns="5" styleClass="selectData" columnClasses="selectDateColumn1,
+					selectDateColumn2, selectDateColumn3, selectDateColumn4, selectDateColumn5">
+					<h:outputText value="Kiev"/>
+					<h:outputText value="&rarr; "/>
+					<h:outputText value="#{ticketBean.to},"/>
+					<h:outputText value="#{ticketBean.convertToDate()},"/>
+					<h:outputText value="#{ticketBean.convertToDayOfWeek()}"/>
+				</h:panelGrid>
+				<br/>
+				<h:dataTable id="dataCustomer" value="#{ticketBean.listCustomers}" var="customer" styleClass="dataCustomerClass"
+					columnClasses="dataCustomerClassColumn1">
+					<h:column>
+						<h:outputText value="#{ticketBean.listCustomers.indexOf(customer) + 1}. "/>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">First name</f:facet>
+						<p:inputText value="#{customer.first_name}" required="true" 
+							requiredMessage="#{msg.customerFieldsNotEmpty}" size="15" styleClass="">
+						
+						</p:inputText>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Second name</f:facet>
+						<p:inputText value="#{customer.second_name}" required="true" 
+							requiredMessage="#{msg.customerFieldsNotEmpty}" size="15" styleClass="">
+						
+						</p:inputText>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Gender</f:facet>
+						<p:selectOneMenu value="#{customer.gender}" required="true" 
+							requiredMessage="#{msg.customerFieldsNotEmpty}" styleClass="" style="width: 80px">
+							<f:selectItems value="#{converterEnum.getGenders()}" var="value"
+								itemValue="#{value}" itemLabel="#{value.label}"/>
+						</p:selectOneMenu>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Birthday</f:facet>
+						<p:calendar value="#{customer.birthday}" required="true" pattern="dd-MM-yyyy" mask="true" size="7"
+							requiredMessage="#{msg.customerFieldsNotEmpty}">
+						</p:calendar>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Passport data</f:facet>
+						<p:inputText value="#{customer.passport_data}" required="true" 
+							requiredMessage="#{msg.customerFieldsNotEmpty}" styleClass="">
+						
+						</p:inputText>
+					</h:column>
+				</h:dataTable>
+				<br/>
+				<p:commandButton value="Add to Cart" ajax="false" action="#{ticketBean.addToCart()}" styleClass="buttomCustomer buttonCustomerClass"/>
+				<p:messages styleClass="messages"/>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

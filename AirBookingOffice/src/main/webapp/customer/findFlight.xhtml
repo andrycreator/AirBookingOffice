@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Find flight</title>
+	<h:outputStylesheet name="stylesSite.css" library="css" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/CustomerTemplate.xhtml">
+		<ui:define name="contentCustomer">
+			<h:form>
+				<h:panelGrid id="selectData" columns="5" styleClass="selectData" columnClasses="selectDateColumn1,
+					selectDateColumn2, selectDateColumn3, selectDateColumn4, selectDateColumn5">
+					<h:outputText value="Kiev"/>
+					<h:outputText value="&rarr; "/>
+					<h:outputText value="#{ticketBean.to},"/>
+					<h:outputText value="#{ticketBean.convertToDate()},"/>
+					<h:outputText value="#{ticketBean.convertToDayOfWeek()}"/>
+				</h:panelGrid>
+				<br/>
+				<p:dataTable id="selFlight" value="#{ticketBean.selectedFlight}" var="flightFromList"  styleClass="selFindFlight" >
+					<p:column headerText="Flight" styleClass="selFindFlightColumn1">
+						#{flightFromList.number}
+					</p:column>
+					
+					<p:column headerText="Company" styleClass="selFindFlightColumn2">
+						#{flightFromList.company}
+					</p:column>
+					
+					<p:column headerText="Departure" styleClass="selFindFlightColumn3">
+						<h:outputText value="#{ticketBean.convertToTime(flightFromList.date_departure)}">
+							<f:convertDateTime pattern="dd.MM.yyyy" timeZone="EET"/>
+						</h:outputText>
+					</p:column>
+					
+					<p:column headerText="Duration" styleClass="selFindFlightColumn4">
+						&mdash; #{ticketBean.durationFlight(flightFromList.date_departure, flightFromList.date_arrival)} &rarr;
+					</p:column>
+					
+					<p:column headerText="Arrival" styleClass="selFindFlightColumn5">
+						<h:outputText value="#{ticketBean.convertToTime(flightFromList.date_arrival)}">
+							<f:convertDateTime pattern="dd.MM.yyyy" timeZone="EET"/>
+						</h:outputText>
+					</p:column>
+					
+					<p:column headerText="Price" styleClass="selFindFlightColumn6">
+						<h:outputText value="#{flightFromList.price}">
+							<f:convertNumber pattern="#000.00$" />
+						</h:outputText>
+					</p:column>
+							
+					<p:column styleClass="selFindFlightColumn7">
+						<h:commandLink action="#{ticketBean.initCustomer(flightFromList.id)}" immediate="true" styleClass="">
+							<h:graphicImage value="/resources/icons/shoping26.png"/>
+						</h:commandLink>
+					</p:column>
+				</p:dataTable>
+				<br/>
+				<h:panelGrid id="continueButton" styleClass="continueButtonClass">
+					<p:commandButton value="Continue flight search..." action="#{ticketBean.redirectCustomer()}" styleClass="buttonCustomerClass"/>
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

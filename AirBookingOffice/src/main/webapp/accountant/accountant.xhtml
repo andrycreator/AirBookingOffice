@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/UserTemplate.xhtml">
+		<ui:define name="contentUser">
+			#{ordersBean.init()}
+			<h:form>
+				<h2>Orders</h2>
+				<p:dataTable id="orderAcc" value="#{ordersBean.list}" var="order" styleClass="orderAccClass">
+					<p:column headerText="№ order" styleClass="orderAccClassColumn1">
+						#{order.id}
+					</p:column>
+		
+					<p:column headerText="Status" styleClass="orderAccClassColumn2">
+						#{order.status.getLabel()}
+					</p:column>
+					
+					<p:column headerText="Date booked" styleClass="orderAccClassColumn3">
+						<h:outputText value="#{order.reserv_date}">
+							<f:convertDateTime pattern="HH:mm dd.MM.yyyy" timeZone="EET"/>
+						</h:outputText>
+					</p:column>
+		
+					<p:column headerText="Tickets" styleClass="orderAccClassColumn4">
+						#{order.tickets.size()}
+					</p:column>
+		
+					<p:column headerText="Amount" styleClass="orderAccClassColumn5">
+						<h:outputText value="#{ordersBean.amountOrder(order)}">
+							<f:convertNumber pattern="#,##0.00 $" />
+						</h:outputText>
+					</p:column>
+					
+					<p:column styleClass="orderAccClassColumn6">
+						<p:commandButton value="Paid" ajax="false" action="#{ordersBean.paidOrder(order.id)}"
+							style="font-size: 12px; background-color: #0000c6; color: white; border-radius: 10px;"/>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
